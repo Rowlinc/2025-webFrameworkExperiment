@@ -1,4 +1,4 @@
-package com.morgan.demo01.dao;
+package com.morgan.demo01.repository;
 
 import com.morgan.demo01.entity.DO.User;
 import lombok.extern.slf4j.Slf4j;
@@ -9,13 +9,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @Slf4j
 @SpringBootTest
-class UserDaoTest {
+class UserRepositoryTest {
     @Autowired
-    private UserDao userDao;
+    private UserRepository userRepository;
 
 //    改
     @Test
@@ -24,7 +22,7 @@ class UserDaoTest {
                 .id("1416323881434828800")
                 .name("wang")
                 .build();
-        userDao.save(user);
+        userRepository.save(user);
     }
 
 //    增
@@ -33,18 +31,18 @@ class UserDaoTest {
         var user= User.builder()
                 .name("song")
                 .build();
-        userDao.save(user);
+        userRepository.save(user);
     }
 
 //    查
     @Test
     void findTest(){
-        userDao.findById("1416323881434828800");
+        userRepository.findById("1416323881434828800");
     }
 //    删除
     @Test
     void deleteTest(){
-        userDao.deleteById("1416323881434828800");
+        userRepository.deleteById("1416323881434828800");
     }
 //    增多条
     @Test
@@ -54,7 +52,7 @@ class UserDaoTest {
                 User.builder().name("02").build(),
                 User.builder().name("03").build()
         ).toList();
-        userDao.saveAll(users);
+        userRepository.saveAll(users);
     }
 
 }

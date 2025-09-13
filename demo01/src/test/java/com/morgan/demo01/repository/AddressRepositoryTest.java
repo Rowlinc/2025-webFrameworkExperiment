@@ -1,8 +1,7 @@
-package com.morgan.demo01.dao;
+package com.morgan.demo01.repository;
 
 import com.morgan.demo01.entity.DO.Address;
 import com.morgan.demo01.mapper.AddressRowMapper;
-import com.morgan.demo01.mapper.UserResultSetExtractor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +10,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 @Slf4j
-class AddressDaoTest {
+class AddressRepositoryTest {
     @Autowired
-    private AddressDao addressDao;
+    private AddressRepository addressRepository;
 
 //    查
     @Test
     void findTest(){
-        for (Address address:addressDao.getAddressesByUserId("1416323881434828800")){
+        for (Address address: addressRepository.getAddressesByUserId("1416323881434828800")){
             log.debug("address:{}",address);
         }
     }
@@ -37,23 +34,23 @@ class AddressDaoTest {
                 Address.builder().detail("beijing").userId("1416336075241246721").build(),
                 Address.builder().detail("tianjin").userId("1416336075241246721").build()
         ).toList();
-        addressDao.saveAll(addresses);
+        addressRepository.saveAll(addresses);
     }
     @Test
     void findAllTest(){
-        System.out.println(addressDao.getAllAddressByUserId("1416336075241246721"));
+        System.out.println(addressRepository.getAllAddressByUserId("1416336075241246721"));
     }
 
     @Test
     void findAToAU(){
-        System.out.println(addressDao.getAddToAddWithUByAid("1416340065286836224",new AddressRowMapper()));
+        System.out.println(addressRepository.getAddToAddWithUByAid("1416340065286836224",new AddressRowMapper()));
     }
     @Test
     void findUToAU(){
-        System.out.println(addressDao.getUidToAddWithU("1416336075211886592"));
+        System.out.println(addressRepository.getUidToAddWithU("1416336075211886592"));
     }
     @Test
     void findNameWithAdd(){
-        System.out.println(addressDao.getNameWithAdd());
+        System.out.println(addressRepository.getNameWithAdd());
     }
 }

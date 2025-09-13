@@ -4,11 +4,10 @@ spring:
     url: jdbc:mysql://120.46.159.231/${mysql-account}
     username: ${mysql-account}
     password: ${mysql-account}
-##    默认开启程序启动执行sql文件
-#  sql:
-#    init:
-#      mode: always
-
+  sql:
+    init:
+      schema-locations: classpath:sql/schema.sql
+      mode: always
 logging:
   level:
     sql: debug

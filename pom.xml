@@ -8,6 +8,7 @@
         <version>3.5.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+    <packaging>pom</packaging>
     <groupId>com.morgan</groupId>
     <artifactId>web-homework</artifactId>
     <version>0.0.1-SNAPSHOT</version>

@@ -1,7 +1,6 @@
 package com.morgan.demo01.repository;
 
 import com.morgan.demo01.entity.DO.Address;
-import com.morgan.demo01.mapper.AddressRowMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +42,7 @@ class AddressRepositoryTest {
 
     @Test
     void findAToAU(){
-        System.out.println(addressRepository.getAddToAddWithUByAid("1416340065286836224",new AddressRowMapper()));
+        System.out.println(addressRepository.getAddToAddWithUByAid("1416340065286836224"));
     }
     @Test
     void findUToAU(){

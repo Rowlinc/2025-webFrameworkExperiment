@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class NameWithAdd {
     private String name;
-    private int count;
+    private Integer count;
 }

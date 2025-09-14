@@ -5,10 +5,10 @@ import com.morgan.demo01.entity.DTO.AddToAddWithU;
 import com.morgan.demo01.entity.DTO.NameWithAdd;
 import com.morgan.demo01.entity.DTO.UidToAdd;
 import com.morgan.demo01.entity.DTO.UidToAddWithU;
+import com.morgan.demo01.mapper.AddressRowMapper;
 import com.morgan.demo01.mapper.UserResultSetExtractor;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,8 +19,8 @@ public interface AddressRepository extends CrudRepository<Address,String> {
     List<Address> getAddressesByUserId(String userId);
     @Query("select user_id,detail,create_time,update_time from address a where a.user_id=:userId")
     List<UidToAdd> getAllAddressByUserId(String userId);
-    @Query("select a.id,a.detail,a.user_id,u.name from address a left join user u on a.user_id=u.id where a.id=:addressId")
-    AddToAddWithU getAddToAddWithUByAid(String addressId, RowMapper<AddToAddWithU> rowMapper);
+    @Query(value = "select a.id,a.detail,a.user_id,u.name from address a left join user u on a.user_id=u.id where a.id=:addressId",rowMapperClass = AddressRowMapper.class)
+    AddToAddWithU getAddToAddWithUByAid(String addressId);
     @Query(value = "select * from user u join address a on u.id=a.user_id where u.id=:userId",resultSetExtractorClass = UserResultSetExtractor.class)
     UidToAddWithU getUidToAddWithU(String userId);
     @Query("select u.name,count(a.id) as count from user u left join address a on u.id = a.user_id group by u.id order by count")

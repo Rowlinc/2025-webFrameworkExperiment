@@ -19,7 +19,7 @@ public interface AddressRepository extends CrudRepository<Address,String> {
     List<Address> getAddressesByUserId(String userId);
     @Query("select user_id,detail,create_time,update_time from address a where a.user_id=:userId")
     List<UidToAdd> getAllAddressByUserId(String userId);
-    @Query(value = "select a.id,a.detail,a.user_id,u.name from address a left join user u on a.user_id=u.id where a.id=:addressId",rowMapperClass = AddressRowMapper.class)
+    @Query(value = "select * from address a join user u on a.user_id=u.id where a.id=:addressId",rowMapperClass = AddressRowMapper.class)
     AddToAddWithU getAddToAddWithUByAid(String addressId);
     @Query(value = "select * from user u join address a on u.id=a.user_id where u.id=:userId",resultSetExtractorClass = UserResultSetExtractor.class)
     UidToAddWithU getUidToAddWithU(String userId);

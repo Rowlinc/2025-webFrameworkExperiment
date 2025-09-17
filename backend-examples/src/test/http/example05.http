@@ -1,0 +1,20 @@
+POST http://localhost:8080/api/example05/login
+Content-Type: application/json
+
+{
+  "account": "admin",
+  "password": "admin123"
+}
+
+> {% client.global.set("token", response.headers.valueOf("token")); %}
+### token为空。未登录请求
+GET  http://localhost:8080/api/example05/admin/welcome
+
+### 手动模拟合法token与role测试
+GET  http://localhost:8080/api/example05/admin/welcome
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQURNSU4iLCJ1aWQiOiIxNDE3MTU1MzgxOTQ0MzQwNDgwIiwiaWF0IjoxNzU4MDcxNzUyLCJleHAiOjE3NTgxNTgxNTJ9.AMO6RdBYsGn6Vab5AjXJTlo5ua632P8SHqv2-B9YNDs
+role: U8gR5
+
+### 基于脚本自动获取token数据。便于测试
+GET  http://localhost:8080/api/example05/admin/welcome
+token: {{token}}

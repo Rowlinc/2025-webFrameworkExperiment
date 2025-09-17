@@ -7,10 +7,10 @@
         <artifactId>web-homework</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>demo01</artifactId>
+    <artifactId>backend-examples</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo01</name>
-    <description>demo01</description>
+    <name>backend-examples</name>
+    <description>backend-examples</description>
     <url/>
     <licenses>
         <license/>
@@ -28,23 +28,35 @@
         <java.version>24</java.version>
     </properties>
     <dependencies>
-
         <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-launcher</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jdbc</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>4.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
         </dependency>
     </dependencies>
 

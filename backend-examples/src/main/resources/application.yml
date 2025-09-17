@@ -1,0 +1,26 @@
+mysql-account: 2023211454
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://120.46.159.231/${mysql-account}
+    username: ${mysql-account}
+    password: ${mysql-account}
+  sql:
+    init:
+      schema-locations: classpath:/sql/schema.sql
+      mode: always
+logging:
+  level:
+    sql: debug
+    com:
+      morgan:
+        demo01: debug
+  pattern:
+    console: '%-5level %C.%M[%line] - %msg%n'
+#自定义属性
+admin:
+  account: admin
+  password: admin123
+my:
+  secretKey: 562$5ssf*@sf5215
+  default-password: user123

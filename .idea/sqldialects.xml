@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/demo01/src/main/java/com/morgan/demo01/repository/AddressRepository.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/backend-examples/src/main/java/com/morgan/backendexamples/repository/UserRepository.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/backend-examples/src/main/resources/sql/schema.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/demo01/src/main/java/com/morgan/demo01/repository/AddressRepository.java" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/demo01/src/main/resources/sql/schema.sql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/demo01/src/test/resources/console.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/demo01/src/test/resources/sql/console.sql" dialect="MySQL" />
   </component>
 </project>

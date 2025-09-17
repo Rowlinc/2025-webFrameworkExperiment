@@ -30,7 +30,7 @@ public class LoginController {
         }
         String token=jwtComponent.encode(Map.of("uid",user.getId(),"role",user.getRole()));
         response.addHeader("token",token);
-        return Result.success(Code.BUSINESS_LOGIN_SUCCESS, user);
+        return Result.success(Code.BUSINESS_LOGIN_SUCCESS, token);
     }
     @GetMapping("/admin/welcome")
     public Result adminLogin(@RequestAttribute("role") String role){

@@ -17,6 +17,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/example05")
 @RequiredArgsConstructor
+@CrossOrigin//支持跨域
 public class LoginController {
     private final BCryptEncryptor bCryptEncryptor;
     private final UserService userService;

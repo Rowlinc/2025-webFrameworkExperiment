@@ -16,6 +16,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/example05")
 @RequiredArgsConstructor
+@CrossOrigin//支持跨域
 public class AdminController {
     private final JWTComponent jwtComponent;
     private final UserService userService;

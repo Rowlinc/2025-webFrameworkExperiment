@@ -19,13 +19,14 @@ import java.util.Map;
 public class UserController {
     private final JWTComponent jwtComponent;
     private final UserService userService;
-    @PostMapping("/updatePassword")
+    @PostMapping("/user/updatePassword")
     public Result updatePassword(@RequestBody String newPassword, HttpServletRequest request){
-        String token= request.getAttribute("token").toString();
-        if (token==null){
+        Object tokenOb = request.getAttribute("token");
+        if (tokenOb ==null){
             throw BusinessException.builder()
                     .code(Code.BUSINESS_TOKEN_INCORRECT).build();
         }
+        String token=tokenOb.toString();
         String uid=jwtComponent.getData(token,"uid");
         Integer count=userService.updatePasswordById(UserBackendExamples.builder().id(uid).password(newPassword).build());
         return Result.success(Code.BUSINESS_SQL_UPDATE_PASSWORD_SUCCESS, Map.of("msg","修改条数:"+count));

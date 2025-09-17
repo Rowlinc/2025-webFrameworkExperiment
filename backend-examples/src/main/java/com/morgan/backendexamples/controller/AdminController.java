@@ -21,11 +21,12 @@ public class AdminController {
     private final JWTComponent jwtComponent;
     private final UserService userService;
 //    检验令牌
-    public void checkAdminToken(String token){
-        if (token==null){
+    public void checkAdminToken(Object tokenOb){
+        if (tokenOb==null){
             throw BusinessException.builder()
                     .code(Code.BUSINESS_TOKEN_INCORRECT).build();
         }
+        String token=tokenOb.toString();
         String role=jwtComponent.getData(token,"role");
         if (!role.equals(UserBackendExamples.ROLE_ADMIN)){
             throw BusinessException.builder()
@@ -33,27 +34,27 @@ public class AdminController {
         }
     }
 //    添加用户
-    @PostMapping("/insertUser")
+    @PostMapping("/admin/insertUser")
     public Result insertUser(@RequestBody UserBackendExamples user, HttpServletRequest request){
-        String token=request.getAttribute("token").toString();
-        checkAdminToken(token);
+        Object tokenOb =request.getAttribute("token");
+        checkAdminToken(tokenOb);
         user.setRole(null);
         UserBackendExamples users =userService.insertUser(user);
         return Result.success(Code.BUSINESS_SQL_INSERT_USER_SUCCESS,users);
     }
 //    获取全部用户信息
-    @GetMapping("/getAllUser")
+    @GetMapping("/admin/getAllUser")
     public Result getAllUser(HttpServletRequest request){
-        String token=request.getAttribute("token").toString();
-        checkAdminToken(token);
+        Object tokenOb =request.getAttribute("token");
+        checkAdminToken(tokenOb);
         List<UserBackendExamples> users =userService.findAllUser();
         return Result.success(Code.BUSINESS_SQL_GET_ALL_USER_SUCCESS,users);
     }
 //    重置指定账号密码
-    @PostMapping("/rebuildPassword")
+    @PostMapping("/admin/rebuildPassword")
     public Result rebuildPassword(@RequestBody UserBackendExamples user, HttpServletRequest request){
-        String token=request.getAttribute("token").toString();
-        checkAdminToken(token);
+        Object tokenOb=request.getAttribute("token");
+        checkAdminToken(tokenOb);
         user.setPassword(null);
         Integer changeCount=userService.updatePasswordById(user);
         return Result.success(Code.BUSINESS_SQL_UPDATE_PASSWORD_SUCCESS, Map.of("msg","修改条目数为:"+changeCount));
